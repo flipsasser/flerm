@@ -67,6 +67,3 @@
 [submodule "bundle/ctrl-p.vim"]
 	path = bundle/ctrl-p.vim
 	url = git://github.com/kien/ctrlp.vim.git
-[submodule "bundle/vim-less"]
-	path = bundle/vim-less
-	url = git://github.com/KohPoll/vim-less.git
