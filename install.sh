@@ -25,4 +25,4 @@ then
   mv ~/.vim ~/.vim.old
 fi
 
-ln -s ~/.flim/vim/ ~/.vim
+ln -s ~/.flim/ ~/.vim
