@@ -29,7 +29,6 @@ autocmd BufWritePre * :Trim
 
 " Read JSON files as JavaScript
 autocmd BufNewFile,BufRead *.json set ft=javascript
-autocmd BufNewFile,BufRead *.less set ft=css
 
 " NERDCommenter shortcuts
 nmap \\           <Plug>NERDCommenterInvert
