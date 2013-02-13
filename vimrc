@@ -21,10 +21,8 @@ set wrap
 set expandtab
 set shiftwidth=2
 set softtabstop=2
-
-" Make the cursor pretty and friendly and nice
-let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-let &t_EI = "\<Esc>]50;CursorShape=2\x7"
+set smarttab
+set cindent
 
 " Buffer autocommands
 autocmd BufEnter * set cursorline
@@ -54,17 +52,11 @@ nmap <Right> <>
 
 set ttimeoutlen=50  " Make Esc work faster
 
-"Cursor shapes
-if exists("g:use_cursor_shapes") && g:use_cursor_shapes
-  if exists("$TMUX")
-    let &t_SI = "\<Esc>[3 q"
-    let &t_EI = "\<Esc>[0 q"
-  else
-    let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-    let &t_EI = "\<Esc>]50;CursorShape=0\x7"
-  endif
-endif
+" Make the cursor pretty and friendly and nice
+let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+let &t_EI = "\<Esc>]50;CursorShape=2\x7"
 
+" Add helpful Rails commands for common patterns
 autocmd User Rails nnoremap <buffer> <D-r> :<C-U>Rake<CR>
 autocmd User Rails nnoremap <buffer> <D-R> :<C-U>.Rake<CR>
 autocmd User Rails Rnavcommand decorator app/decorators -suffix=_decorator.rb -default=model()
@@ -82,9 +74,10 @@ autocmd User Rails Rnavcommand javascript app/assets/javascripts -suffix=.js -de
 autocmd User Rails Rnavcommand stylesheet app/assets/stylesheets -suffix=.less -default=model()
 autocmd User Fugitive command! -bang -bar -buffer -nargs=* Gpr :Git<bang> pull --rebase <args>$
 
+" Extend HTML indentation
 let g:html_indent_inctags = "html,body,head,tbody"
 let g:html_indent_script1 = "inc"
 let g:html_indent_style1 = "inc"
 
-set smarttab
-set cindent
+" Disable auto-compilation of LESS files
+autocmd! BufWritePost,FileWritePost *.less
