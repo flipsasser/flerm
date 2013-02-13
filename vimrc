@@ -15,12 +15,16 @@ set guioptions-=T guioptions-=e guioptions-=L guioptions-=r
 set shell=bash
 syntax on
 
-set textwidth=80
+"set textwidth=80
 set wrap
 
 set expandtab
 set shiftwidth=2
 set softtabstop=2
+
+" Make the cursor pretty and friendly and nice
+let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+let &t_EI = "\<Esc>]50;CursorShape=2\x7"
 
 " Buffer autocommands
 autocmd BufEnter * set cursorline
@@ -47,3 +51,40 @@ nmap <Down> <>
 nmap <Up> <>
 nmap <Left> <>
 nmap <Right> <>
+
+set ttimeoutlen=50  " Make Esc work faster
+
+"Cursor shapes
+if exists("g:use_cursor_shapes") && g:use_cursor_shapes
+  if exists("$TMUX")
+    let &t_SI = "\<Esc>[3 q"
+    let &t_EI = "\<Esc>[0 q"
+  else
+    let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+    let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+  endif
+endif
+
+autocmd User Rails nnoremap <buffer> <D-r> :<C-U>Rake<CR>
+autocmd User Rails nnoremap <buffer> <D-R> :<C-U>.Rake<CR>
+autocmd User Rails Rnavcommand decorator app/decorators -suffix=_decorator.rb -default=model()
+autocmd User Rails Rnavcommand presenter app/presenters -suffix=_presenter.rb -default=model()
+autocmd User Rails Rnavcommand uploader app/uploaders -suffix=_uploader.rb -default=model()
+autocmd User Rails Rnavcommand steps features/step_definitions spec/steps -suffix=_steps.rb -default=web
+autocmd User Rails Rnavcommand blueprint spec/blueprints -suffix=_blueprint.rb -default=model()
+autocmd User Rails Rnavcommand factory spec/factories -suffix=_factory.rb -default=model()
+autocmd User Rails Rnavcommand fabricator spec/fabricators -suffix=_fabricator.rb -default=model()
+autocmd User Rails Rnavcommand feature features -suffix=.feature -default=cucumber
+autocmd User Rails Rnavcommand serializer app/serializers -suffix=_serializer.rb -default=model()
+autocmd User Rails Rnavcommand support spec/support features/support -default=env
+autocmd User Rails Rnavcommand worker app/workers -suffix=_worker.rb -default=model()
+autocmd User Rails Rnavcommand javascript app/assets/javascripts -suffix=.js -default=model()
+autocmd User Rails Rnavcommand stylesheet app/assets/stylesheets -suffix=.less -default=model()
+autocmd User Fugitive command! -bang -bar -buffer -nargs=* Gpr :Git<bang> pull --rebase <args>$
+
+let g:html_indent_inctags = "html,body,head,tbody"
+let g:html_indent_script1 = "inc"
+let g:html_indent_style1 = "inc"
+
+set smarttab
+set cindent
