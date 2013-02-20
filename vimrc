@@ -71,7 +71,8 @@ autocmd User Rails Rnavcommand serializer app/serializers -suffix=_serializer.rb
 autocmd User Rails Rnavcommand support spec/support features/support -default=env
 autocmd User Rails Rnavcommand worker app/workers -suffix=_worker.rb -default=model()
 autocmd User Rails Rnavcommand javascript app/assets/javascripts -suffix=.js -default=model()
-autocmd User Rails Rnavcommand stylesheet app/assets/stylesheets -suffix=.less -default=model()
+autocmd User Rails Rnavcommand less app/assets/stylesheets -suffix=.less -default=model()
+autocmd User Rails Rnavcommand stylesheet app/assets/stylesheets -suffix=.scss -default=model()
 autocmd User Fugitive command! -bang -bar -buffer -nargs=* Gpr :Git<bang> pull --rebase <args>$
 
 " Extend HTML indentation
@@ -80,4 +81,5 @@ let g:html_indent_script1 = "inc"
 let g:html_indent_style1 = "inc"
 
 " Disable auto-compilation of LESS files
-autocmd! BufWritePost,FileWritePost *.less
+autocmd! BufWritePost *.less
+autocmd! FileWritePost *.less
