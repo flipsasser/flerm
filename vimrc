@@ -73,6 +73,7 @@ autocmd User Rails Rnavcommand worker app/workers -suffix=_worker.rb -default=mo
 autocmd User Rails Rnavcommand javascript app/assets/javascripts -suffix=.js -default=model()
 autocmd User Rails Rnavcommand less app/assets/stylesheets -suffix=.less -default=model()
 autocmd User Rails Rnavcommand stylesheet app/assets/stylesheets -suffix=.scss -default=model()
+autocmd User Rails Rnavcommand task lib/tasks -suffix=.rake -default=model()
 autocmd User Fugitive command! -bang -bar -buffer -nargs=* Gpr :Git<bang> pull --rebase <args>$
 
 " Extend HTML indentation
