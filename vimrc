@@ -32,6 +32,9 @@ autocmd BufWritePre * :Trim
 " Read JSON files as JavaScript
 autocmd BufNewFile,BufRead *.json set ft=javascript
 
+" Read Podfiles as Ruby
+autocmd BufNewFile,BufRead Podfile set ft=ruby
+
 " NERDCommenter shortcuts
 nmap \\           <Plug>NERDCommenterInvert
 xmap \\           <Plug>NERDCommenterInvert
