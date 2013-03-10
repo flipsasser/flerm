@@ -26,3 +26,11 @@ then
 fi
 
 ln -s ~/.flim/ ~/.vim
+
+if [ -e ~/.profile -o -h ~/.profile ]
+then
+	echo "  backing up ~/.profile to ~/.profile.old"
+  mv ~/.profile ~/.profile.old
+fi
+
+ln -s ~/.flim/profile ~/.profile
