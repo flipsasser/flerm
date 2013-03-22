@@ -53,6 +53,8 @@ nmap <Up> <>
 nmap <Left> <>
 nmap <Right> <>
 
+map <leader><tab> :BufExplorer<CR>
+
 set ttimeoutlen=50  " Make Esc work faster
 
 " Make the cursor pretty and friendly and nice
