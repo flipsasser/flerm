@@ -1,3 +1,5 @@
+Bundle 'vundle'
+
 Bundle 'airblade/vim-gitgutter'
 
 Bundle 'bling/vim-airline'
@@ -14,7 +16,6 @@ Bundle 'hallison/vim-markdown'
 
 Bundle 'int3/vim-extradite'
 
-Bundle 'jgdavey/tslime.vim'
 Bundle 'jgdavey/vim-blockle'
 
 Bundle 'kchmck/vim-coffee-script'
