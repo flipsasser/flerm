@@ -1,6 +1,3 @@
-# ~/.hashrc
-# vim:set ft=sh sw=2 sts=2:
-
 rails_root() {
   (
   dir=${1:-$(pwd)}

@@ -1,5 +1,12 @@
+set nocompatible               " be iMproved
+filetype off                   " required!
+
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+so ~/.flim/bundles.vim
+
 " PATHOGEN
-call pathogen#infect()
 syntax on
 filetype plugin indent on
 
