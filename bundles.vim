@@ -12,8 +12,6 @@ Bundle 'ervandew/supertab'
 
 Bundle 'hallison/vim-markdown'
 
-Bundle 'hashrocket/slurper'
-
 Bundle 'int3/vim-extradite'
 
 Bundle 'jgdavey/tslime.vim'
