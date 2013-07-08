@@ -15,24 +15,28 @@ git submodule update
 
 if [ -e ~/.vimrc -o -h ~/.vimrc ]
 then
-        echo "  backing up ~/.vimrc to ~/.vimrc.old"
+  echo "  backing up ~/.vimrc to ~/.vimrc.old"
   mv ~/.vimrc ~/.vimrc.old
 fi
-
 ln -s ~/.flim/vimrc ~/.vimrc
 
 if [ -d ~/.vim/ ]
 then
-        echo "  backing up ~/.vim to ~/.vim.old"
+  echo "  backing up ~/.vim to ~/.vim.old"
   mv ~/.vim ~/.vim.old
 fi
-
 ln -s ~/.flim/ ~/.vim
 
 if [ -e ~/.profile -o -h ~/.profile ]
 then
-        echo "  backing up ~/.profile to ~/.profile.old"
+  echo "  backing up ~/.profile to ~/.profile.old"
   mv ~/.profile ~/.profile.old
 fi
-
 ln -s ~/.flim/profile ~/.profile
+
+if [ -e ~/.ackrc -o -h ~/.ackrc ]
+then
+  echo "  backing up ~/.ackrc to ~/.ackrc.old"
+  mv ~/.ackrc ~/.ackrc.old
+fi
+ln -s ~/.flim/ackrc ~/.ackrc

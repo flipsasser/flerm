@@ -40,5 +40,3 @@ Bundle 'tpope/vim-haml'
 Bundle 'tpope/vim-rake'
 Bundle 'tpope/vim-rails'
 Bundle 'tpope/vim-surround'
-
-Bundle 'turbux.vim'
