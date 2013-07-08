@@ -10,8 +10,7 @@ fi
 git clone git://github.com/flipsasser/flim.git ~/.flim
 cd ~/.flim
 
-git submodule init
-git submodule update
+git submodule update --init --recursive
 
 if [ -e ~/.vimrc -o -h ~/.vimrc ]
 then
