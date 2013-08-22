@@ -1,0 +1,5 @@
+"set lines=72 columns=155
+"set guioptions+=e
+"set transparency=5
+"set fu
+"set guifont=Monaco:h18

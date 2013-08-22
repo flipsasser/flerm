@@ -1,41 +1,55 @@
 #!/usr/bin/env bash
-echo "Installing flim..."
+echo "Installing flerm..."
 
+# Rename old .flim installations to .flerm
 if [ -d ~/.flim ]
 then
-  echo "  removing old versions"
-  rm -rf ~/.flim
+  echo "  moving .flim to .flerm"
+  mv ~/.flim ~/.flerm
 fi
 
-git clone git://github.com/flipsasser/flim.git ~/.flim
-cd ~/.flim
-
-git submodule update --init --recursive
-
-if [ -e ~/.vimrc -o -h ~/.vimrc ]
+# Update or clone flerm
+if [ -d ~/.flerm ]
 then
-  echo "  backing up ~/.vimrc to ~/.vimrc.old"
-  mv ~/.vimrc ~/.vimrc.old
+  echo "  updating flerm"
+  cd ~/.flerm
+  git pull origin master
+  git submodule update --recursive
+else
+  echo "  cloning flerm"
+  git clone git://github.com/flipsasser/flerm.git ~/.flerm
+  git submodule init --update
+  cd ~/.flerm
 fi
-ln -s ~/.flim/vimrc ~/.vimrc
 
+# Install the .vim directory
 if [ -d ~/.vim/ ]
 then
   echo "  backing up ~/.vim to ~/.vim.old"
+  rm -rf ~/.vim.old
   mv ~/.vim ~/.vim.old
 fi
-ln -s ~/.flim/ ~/.vim
 
-if [ -e ~/.profile -o -h ~/.profile ]
-then
-  echo "  backing up ~/.profile to ~/.profile.old"
-  mv ~/.profile ~/.profile.old
-fi
-ln -s ~/.flim/profile ~/.profile
+ln -s ~/.flerm/vim/ ~/.vim
 
-if [ -e ~/.ackrc -o -h ~/.ackrc ]
-then
-  echo "  backing up ~/.ackrc to ~/.ackrc.old"
-  mv ~/.ackrc ~/.ackrc.old
-fi
-ln -s ~/.flim/ackrc ~/.ackrc
+flerm_link() {
+  source_file=~/.flerm/bash/$1
+  user_file=~/.$1
+  if [ -h $user_file -o $user_file ]
+  then
+    echo "  removing old $user_file symlink"
+    rm -rf $user_file
+  elif [ -e $user_file -o -h $user_file ]
+  then
+    echo "  backing up $user_file to $user_file.old"
+    mv $user_file $user_file.old
+  fi
+  echo "  linking $source_file to $user_file"
+  ln -s $source_file $user_file
+}
+
+flerm_link "ackrc"
+flerm_link "gemrc"
+flerm_link "gvimrc"
+flerm_link "profile"
+flerm_link "vimrc"

@@ -1,5 +1,3 @@
-Bundle 'vundle'
-
 Bundle 'airblade/vim-gitgutter'
 
 Bundle 'bling/vim-airline'
@@ -32,6 +30,7 @@ Bundle 'scrooloose/syntastic'
 
 Bundle 'thoughtbot/vim-rspec'
 
+Bundle 'tpope/vim-bundler'
 Bundle 'tpope/vim-cucumber'
 Bundle 'tpope/vim-endwise'
 Bundle 'tpope/vim-eunuch'
@@ -40,3 +39,5 @@ Bundle 'tpope/vim-haml'
 Bundle 'tpope/vim-rake'
 Bundle 'tpope/vim-rails'
 Bundle 'tpope/vim-surround'
+
+Bundle 'jistr/vim-nerdtree-tabs'

@@ -30,6 +30,7 @@ set shiftwidth=2
 set softtabstop=2
 set smarttab
 set cindent
+set backspace=indent,eol,start
 
 " Buffer autocommands
 autocmd BufEnter * set cursorline
@@ -64,6 +65,12 @@ map <leader><tab> :BufExplorer<CR>
 
 set ttimeoutlen=50  " Make Esc work faster
 
+" CtrlP opens in tabs instead of split panes
+let g:ctrlp_prompt_mappings = {
+    \ 'AcceptSelection("e")': ['<c-t>'],
+    \ 'AcceptSelection("t")': ['<cr>', '<2-LeftMouse>'],
+    \ }
+
 " Make the cursor pretty and friendly and nice
 let &t_SI = "\<Esc>]50;CursorShape=1\x7"
 let &t_EI = "\<Esc>]50;CursorShape=2\x7"
@@ -96,3 +103,9 @@ let g:html_indent_style1 = "inc"
 " Disable auto-compilation of LESS files
 autocmd! BufWritePost *.less
 autocmd! FileWritePost *.less
+
+let g:nerdtree_tabs_open_on_console_startup=1
+let g:nerdtree_tabs_synchronize_focus=1
+let g:nerdtree_tabs_smart_startup_focus=1
+let g:nerdtree_tabs_no_startup_for_diff=1
+
