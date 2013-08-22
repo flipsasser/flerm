@@ -14,12 +14,12 @@ then
   echo "  updating flerm"
   cd ~/.flerm
   git pull origin master
-  git submodule init --update
+  git submodule update --init
 else
   echo "  cloning flerm"
   git clone git://github.com/flipsasser/flerm.git ~/.flerm
-  git submodule init --update
   cd ~/.flerm
+  git submodule update --init
 fi
 
 # Install the .vim directory
@@ -49,8 +49,12 @@ flerm_link() {
   ln -s $source_file $user_file
 }
 
+# Link various bash files
 flerm_link "ackrc"
 flerm_link "gemrc"
 flerm_link "gvimrc"
 flerm_link "profile"
 flerm_link "vimrc"
+
+# Update vim bundles
+vim +BundleInstall +qall
