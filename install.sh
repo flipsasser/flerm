@@ -37,14 +37,15 @@ flerm_link() {
   user_file=~/.$1
   if [ -h $user_file -o $user_file ]
   then
-    echo "  removing old $user_file symlink"
+    echo "  re-linking $user_file"
     rm -rf $user_file
   elif [ -e $user_file -o -h $user_file ]
   then
     echo "  backing up $user_file to $user_file.old"
     mv $user_file $user_file.old
+  else
+    echo "  linking $source_file to $user_file"
   fi
-  echo "  linking $source_file to $user_file"
   ln -s $source_file $user_file
 }
 
