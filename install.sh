@@ -58,3 +58,12 @@ flerm_link "vimrc"
 
 # Update vim bundles
 vim +BundleInstall +qall
+
+# Source the new environment
+source ~/.profile
+
+echo "
+
+FLERM is all set up. Lucky you!
+
+"
