@@ -14,7 +14,7 @@ then
   echo "  updating flerm"
   cd ~/.flerm
   git pull origin master
-  git submodule update --recursive
+  git submodule init --update
 else
   echo "  cloning flerm"
   git clone git://github.com/flipsasser/flerm.git ~/.flerm
