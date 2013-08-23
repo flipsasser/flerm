@@ -22,14 +22,12 @@ set guioptions-=T guioptions-=e guioptions-=L guioptions-=r
 set shell=bash
 syntax on
 
-"set textwidth=80
-set wrap
-
 set expandtab
 set shiftwidth=2
 set softtabstop=2
 set smarttab
 set cindent
+set wrap
 
 " Buffer autocommands
 autocmd BufEnter * set cursorline
@@ -40,7 +38,9 @@ autocmd BufWritePre * :Trim
 autocmd BufNewFile,BufRead *.json set ft=javascript
 
 " Read Podfiles as Ruby
+autocmd BufNewFile,BufRead Guardfile set ft=ruby
 autocmd BufNewFile,BufRead Podfile set ft=ruby
+autocmd BufNewFile,BufRead Procfile set ft=yaml
 
 " NERDCommenter shortcuts
 nmap \\           <Plug>NERDCommenterInvert
@@ -60,7 +60,8 @@ nmap <Up> <>
 nmap <Left> <>
 nmap <Right> <>
 
-map <leader><tab> :BufExplorer<CR>
+"map <leader><tab> :BufExplorer<CR>
+map <leader><tab> :NERDTreeTabsToggle<CR>
 
 set ttimeoutlen=50  " Make Esc work faster
 
@@ -93,6 +94,14 @@ let g:html_indent_inctags = "html,body,head,tbody"
 let g:html_indent_script1 = "inc"
 let g:html_indent_style1 = "inc"
 
-" Disable auto-compilation of LESS files
-autocmd! BufWritePost *.less
-autocmd! FileWritePost *.less
+" Let NERDTree free
+let g:nerdtree_tabs_open_on_console_startup=1
+
+" CTRLP opens in tabs instead of the current buffer
+let g:ctrlp_prompt_mappings = {
+    \ 'AcceptSelection("e")': ['<c-t>'],
+    \ 'AcceptSelection("t")': ['<cr>', '<2-LeftMouse>'],
+    \ }
+
+" CMD+V - sigh. Someday.
+"map <Leader>v  <C-O>:set paste<CR><C-r>*<C-O>:set nopaste<CR>
