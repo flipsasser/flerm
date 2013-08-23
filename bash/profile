@@ -99,5 +99,8 @@ if [ -f $(brew --prefix)/etc/bash_completion ]; then
 fi
 source ~/.flerm/bash/git-completion.bash
 
+# Rbenv configuration
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+
 # Pow configuration to use .local instead of .dev
 export POW_DOMAINS=local
