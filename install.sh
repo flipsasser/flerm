@@ -13,7 +13,7 @@ if [ -d ~/.flerm ]
 then
   echo "  updating flerm"
   cd ~/.flerm
-  git pull origin master
+  git pull --rebase origin master
   git submodule update --init
 else
   echo "  cloning flerm"
