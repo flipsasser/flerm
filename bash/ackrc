@@ -15,6 +15,9 @@
 --ignore-directory=is:tags
 --ignore-directory=is:tmp
 
+# Ignore JSON files by default
+--nojson
+
 # Ack defaults
 --ignore-ack-defaults
 --ignore-directory=is:.bzr
