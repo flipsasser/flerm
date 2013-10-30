@@ -11,6 +11,7 @@ syntax on
 filetype plugin indent on
 
 " GUI configuration
+let &t_Co=256
 colorscheme molokai
 set number
 set guifont=Monaco:h14
@@ -30,8 +31,6 @@ set cindent
 set wrap
 
 " Buffer autocommands
-autocmd BufEnter * set cursorline
-autocmd BufLeave * set nocursorline
 autocmd BufWritePre * :Trim
 
 " Read JSON files as JavaScript
@@ -68,6 +67,7 @@ set ttimeoutlen=50  " Make Esc work faster
 " Make the cursor pretty and friendly and nice
 let &t_SI = "\<Esc>]50;CursorShape=1\x7"
 let &t_EI = "\<Esc>]50;CursorShape=2\x7"
+set cursorline
 
 " Add helpful Rails commands for common patterns
 autocmd User Rails nnoremap <buffer> <D-r> :<C-U>Rake<CR>
@@ -93,9 +93,6 @@ autocmd User Fugitive command! -bang -bar -buffer -nargs=* Gpr :Git<bang> pull -
 let g:html_indent_inctags = "html,body,head,tbody"
 let g:html_indent_script1 = "inc"
 let g:html_indent_style1 = "inc"
-
-" Let NERDTree free
-let g:nerdtree_tabs_open_on_console_startup=1
 
 " CTRLP opens in tabs instead of the current buffer
 let g:ctrlp_prompt_mappings = {
