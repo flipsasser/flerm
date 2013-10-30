@@ -39,19 +39,22 @@ flerm_link() {
   then
     echo "  re-linking $user_file"
     rm -rf $user_file
-  elif [ -e $user_file -o -h $user_file ]
-  then
-    echo "  backing up $user_file to $user_file.old"
-    mv $user_file $user_file.old
   else
+    if [ -e $user_file -o -h $user_file ]
+    then
+      echo "  backing up $user_file to $user_file.old"
+      mv $user_file $user_file.old
+    fi
     echo "  linking $source_file to $user_file"
+    ln -s $source_file $user_file
   fi
-  ln -s $source_file $user_file
 }
 
 # Link various bash files
 flerm_link "ackrc"
 flerm_link "gemrc"
+flerm_link "gitconfig"
+flerm_link "gitignore"
 flerm_link "gvimrc"
 flerm_link "profile"
 flerm_link "vimrc"

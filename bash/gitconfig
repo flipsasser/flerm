@@ -1,0 +1,10 @@
+[user]
+	name = Flip Sasser
+	email = flip@inthebackforty.com
+[color]
+	ui = true
+[core]
+	whitespace = trailing-space
+	excludesfile = /Users/flip/.gitignore
+[branch]
+	autosetuprebase = always
