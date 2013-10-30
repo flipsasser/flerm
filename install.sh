@@ -45,9 +45,9 @@ flerm_link() {
       echo "  backing up $user_file to $user_file.old"
       mv $user_file $user_file.old
     fi
-    echo "  linking $source_file to $user_file"
-    ln -s $source_file $user_file
   fi
+  echo "  linking $source_file to $user_file"
+  ln -s $source_file $user_file
 }
 
 # Link various bash files
