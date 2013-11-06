@@ -8,3 +8,5 @@
 	excludesfile = /Users/flip/.gitignore
 [branch]
 	autosetuprebase = always
+[branch "master"]
+	rebase = true
