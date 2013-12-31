@@ -10,3 +10,5 @@
 	autosetuprebase = always
 [branch "master"]
 	rebase = true
+[init]
+	templatedir = ~/.git_template
