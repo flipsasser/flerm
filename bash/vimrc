@@ -1,12 +1,11 @@
 set nocompatible               " be iMproved
 filetype off                   " required!
 
+" Import bundles using vundle
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
-
 so ~/.vim/plugins.vim
 
-" PATHOGEN
 syntax on
 filetype plugin indent on
 
@@ -23,6 +22,7 @@ set guioptions-=T guioptions-=e guioptions-=L guioptions-=r
 set shell=bash
 syntax on
 
+" Tab and wrap configuration
 set expandtab
 set shiftwidth=2
 set softtabstop=2
@@ -36,14 +36,14 @@ autocmd BufWritePre * :Trim
 " Read JSON files as JavaScript
 autocmd BufNewFile,BufRead *.json set ft=javascript
 
-" Read Podfiles as Ruby
+" Read Filefiles as their intended format
 autocmd BufNewFile,BufRead Guardfile set ft=ruby
 autocmd BufNewFile,BufRead Podfile set ft=ruby
 autocmd BufNewFile,BufRead Procfile set ft=yaml
 
 " NERDCommenter shortcuts
-nmap \\           <Plug>NERDCommenterInvert
-xmap \\           <Plug>NERDCommenterInvert
+nmap \\ <Plug>NERDCommenterInvert
+xmap \\ <Plug>NERDCommenterInvert
 
 " Pane navigation shortcuts
 nmap <C-j> <C-W>j
@@ -53,13 +53,13 @@ nmap <C-l> <C-W>l
 nmap , 10<C-W>>
 nmap . 10<C-W><
 
-" Disable arrow keys to force me to LEARN
+" Disable arrow keys outside of editing
 nmap <Down> <>
 nmap <Up> <>
 nmap <Left> <>
 nmap <Right> <>
 
-"map <leader><tab> :BufExplorer<CR>
+" Turn on NERDTree
 map <leader><tab> :NERDTreeTabsToggle<CR>
 
 set ttimeoutlen=50  " Make Esc work faster
@@ -94,11 +94,12 @@ let g:html_indent_inctags = "html,body,head,tbody"
 let g:html_indent_script1 = "inc"
 let g:html_indent_style1 = "inc"
 
-" CTRLP opens in tabs instead of the current buffer
+" CTRLP configuration
 let g:ctrlp_prompt_mappings = {
     \ 'AcceptSelection("e")': ['<c-t>'],
     \ 'AcceptSelection("t")': ['<cr>', '<2-LeftMouse>'],
-    \ }
+    \ } " Open in tabs
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc " Ignore garbage
 
 " CMD+V - sigh. Someday.
 "map <Leader>v  <C-O>:set paste<CR><C-r>*<C-O>:set nopaste<CR>
