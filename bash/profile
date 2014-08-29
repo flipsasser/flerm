@@ -95,9 +95,6 @@ alias ls="ls -la"
 alias be="bundle exec"
 
 # Bash autocompletion (including git)
-if [ -f $(brew --prefix)/etc/bash_completion ]; then
-  . $(brew --prefix)/etc/bash_completion
-fi
 source ~/.flerm/bash/git-completion.bash
 
 gsub() {
