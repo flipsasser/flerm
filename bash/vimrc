@@ -31,12 +31,13 @@ set nocindent
 set wrap
 
 " Buffer autocommands
-autocmd BufWritePre * :Trim
+autocmd BufWritePre * :TrailerTrim
 
 " Read JSON files as JavaScript
 autocmd BufNewFile,BufRead *.json set ft=javascript
 
 " Read Filefiles as their intended format
+autocmd BufNewFile,BufRead Gemfile set ft=ruby
 autocmd BufNewFile,BufRead Guardfile set ft=ruby
 autocmd BufNewFile,BufRead Podfile set ft=ruby
 autocmd BufNewFile,BufRead Procfile set ft=yaml
