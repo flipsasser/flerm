@@ -1,4 +1,5 @@
 Bundle 'bling/vim-airline'
+Bundle 'briancollins/vim-jst'
 Bundle 'csexton/trailertrash.vim'
 Bundle 'duff/vim-bufonly'
 Bundle 'ervandew/supertab'

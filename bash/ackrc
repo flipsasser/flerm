@@ -8,6 +8,7 @@
 --type-set=less:ext:less
 --type-set=mustache:ext:hbs,handlebars,mustache
 --type-set=sass:ext:sass,scss
+--type-set=eco:ext:eco,jst
 
 # Do not search these directories for quicker lookup
 --ignore-directory=is:coverage

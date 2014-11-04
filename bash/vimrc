@@ -84,3 +84,4 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.pyc " Ignore garbage
 
 " CMD+V - sigh. Someday.
 "map <Leader>v  <C-O>:set paste<CR><C-r>*<C-O>:set nopaste<CR>
+set backspace=indent,eol,start
