@@ -13,11 +13,12 @@
 # Do not search these directories for quicker lookup
 --ignore-directory=is:coverage
 --ignore-directory=is:log
+--ignore-directory=is:node_modules
 --ignore-directory=is:tags
 --ignore-directory=is:tmp
 
 # Ignore JSON files by default
---nojson
+#--nojson
 
 # Ack defaults
 --ignore-ack-defaults
@@ -41,6 +42,7 @@
 --ignore-directory=is:blib
 --ignore-directory=is:_build
 --ignore-directory=is:cover_db
+--ignore-directory=is:dist
 --ignore-file=ext:bak
 --ignore-file=match:/~$/
 --ignore-file=match:/^#.+#$/

@@ -1,6 +1,7 @@
 Bundle 'bling/vim-airline'
 Bundle 'briancollins/vim-jst'
 Bundle 'csexton/trailertrash.vim'
+Bundle 'digitaltoad/vim-pug'
 Bundle 'duff/vim-bufonly'
 Bundle 'ervandew/supertab'
 Bundle 'hallison/vim-markdown'
