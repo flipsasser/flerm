@@ -52,19 +52,19 @@ flerm_link() {
 
 # Link various bash files
 flerm_link "ackrc"
+flerm_link "bash_profile"
 flerm_link "gemrc"
 flerm_link "gitconfig"
 flerm_link "gitignore"
 flerm_link "git_template"
 flerm_link "gvimrc"
-flerm_link "profile"
 flerm_link "vimrc"
 
 # Update vim bundles
 vim +BundleInstall +qall
 
 # Source the new environment
-source ~/.profile
+source ~/.bash_profile
 
 echo "
 
