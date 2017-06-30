@@ -1,3 +1,4 @@
+Bundle 'ap/vim-css-color'
 Bundle 'bling/vim-airline'
 Bundle 'briancollins/vim-jst'
 Bundle 'csexton/trailertrash.vim'

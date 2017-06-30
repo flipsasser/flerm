@@ -41,6 +41,7 @@ autocmd BufNewFile,BufRead Gemfile set ft=ruby
 autocmd BufNewFile,BufRead Guardfile set ft=ruby
 autocmd BufNewFile,BufRead Podfile set ft=ruby
 autocmd BufNewFile,BufRead Procfile set ft=yaml
+autocmd BufNewFile,BufRead *.slim set ft=slim
 
 " NERDCommenter shortcuts
 nmap \\ <Plug>NERDCommenterInvert

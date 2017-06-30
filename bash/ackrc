@@ -31,6 +31,7 @@
 --ignore-directory=is:.git
 --ignore-directory=is:.hg
 --ignore-directory=is:.pc
+--ignore-directory=is:.sass-cache
 --ignore-directory=is:.svn
 --ignore-directory=is:_MTN
 --ignore-directory=is:CVS
