@@ -33,15 +33,16 @@ set wrap
 " Buffer autocommands
 autocmd BufWritePre * :TrailerTrim
 
-" Read JSON files as JavaScript
+" Read specific files real smaht-like
+let g:jsx_ext_required = 0
 autocmd BufNewFile,BufRead *.json set ft=javascript
+autocmd BufNewFile,BufRead *.slim set ft=slim
 
 " Read Filefiles as their intended format
 autocmd BufNewFile,BufRead Gemfile set ft=ruby
 autocmd BufNewFile,BufRead Guardfile set ft=ruby
 autocmd BufNewFile,BufRead Podfile set ft=ruby
 autocmd BufNewFile,BufRead Procfile set ft=yaml
-autocmd BufNewFile,BufRead *.slim set ft=slim
 
 " NERDCommenter shortcuts
 nmap \\ <Plug>NERDCommenterInvert
@@ -81,7 +82,7 @@ let g:ctrlp_prompt_mappings = {
     \ 'AcceptSelection("e")': ['<c-t>'],
     \ 'AcceptSelection("t")': ['<cr>', '<2-LeftMouse>'],
     \ } " Open in tabs
-set wildignore+=*/node_modules/*,*/tmp/*,*.so,*.swp,*.zip,*.pyc " Ignore garbage
+set wildignore+=*/node_modules/*,*/tmp/*,*.so,*.swp,*.zip,*.pyc,*/dist/* " Ignore garbage
 
 " CMD+V - sigh. Someday.
 "map <Leader>v  <C-O>:set paste<CR><C-r>*<C-O>:set nopaste<CR>
