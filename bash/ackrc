@@ -17,6 +17,9 @@
 --ignore-directory=is:tags
 --ignore-directory=is:tmp
 --ignore-directory=is:generated
+--ignore-directory=is:ios/build
+--ignore-file=is:package-lock.json
+--ignore-file=match:ios/.+/project.pbxproj
 
 # Ignore JSON files by default
 #--nojson
@@ -51,6 +54,7 @@
 --ignore-file=match:/[._].*\.swp$/
 --ignore-file=match:/core\.\d+$/
 --ignore-file=match:/[.]min[.]js$/
+--ignore-file=is:yarn.lock
 --type-add=perl:ext:pl,pm,pod,t
 --type-add=perl:firstlinematch:/^#!.*\bperl/
 --type-add=make:ext:mk
