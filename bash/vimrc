@@ -87,3 +87,8 @@ set wildignore+=*/node_modules/*,*/tmp/*,*.so,*.swp,*.zip,*.pyc,*/dist/* " Ignor
 " CMD+V - sigh. Someday.
 "map <Leader>v  <C-O>:set paste<CR><C-r>*<C-O>:set nopaste<CR>
 set backspace=indent,eol,start
+
+" Things
+let g:tsuquyomi_disable_quickfix = 1
+let g:syntastic_typescript_checkers = ['tsuquyomi'] " You shouldn't use 'tsc' checker.
+
