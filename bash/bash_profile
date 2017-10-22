@@ -79,6 +79,7 @@ bind '"\C-q": "%-\n"'
 alias gap='git add -p .'
 alias glod='git log --oneline --decorate'
 alias gst='git status'
+alias gd='git diff'
 
 # Editor aliases
 alias edit="vim"

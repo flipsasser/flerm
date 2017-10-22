@@ -117,6 +117,7 @@
 --type-add=tcl:ext:tcl,itcl,itk
 --type-add=tex:ext:tex,cls,sty
 --type-add=tt:ext:tt,tt2,ttml
+--type-add=typescript:ext:ts,tsx
 --type-add=vb:ext:bas,cls,frm,ctl,vb,resx
 --type-add=verilog:ext:v,vh,sv
 --type-add=vhdl:ext:vhd,vhdl
