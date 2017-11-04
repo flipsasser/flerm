@@ -57,7 +57,6 @@ flerm_link "gemrc"
 flerm_link "gitconfig"
 flerm_link "gitignore"
 flerm_link "git_template"
-flerm_link "gvimrc"
 flerm_link "vimrc"
 
 # Update vim bundles

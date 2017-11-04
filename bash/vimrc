@@ -20,7 +20,6 @@ set splitbelow
 
 set guioptions-=T guioptions-=e guioptions-=L guioptions-=r
 set shell=bash
-syntax on
 
 " Tab and wrap configuration
 set expandtab
@@ -100,3 +99,9 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
+" Typescript configuration
+autocmd BufNewFile,BufRead *.{ts,tsx} ALELint
+let g:airline#extensions#ale#enabled = 1
+
+" Airline configuration
+set laststatus=2 " Show all the time
