@@ -1,0 +1,12 @@
+build/
+coverage/
+generated/
+ios/build
+ios/.+/project.pbxproj
+log/
+node_modules/
+tags/
+tmp/
+*.min.js
+package-lock.json
+yarn.lock

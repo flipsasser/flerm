@@ -26,6 +26,7 @@ flerm_unlink() {
 flerm_unlink "ackrc"
 flerm_unlink "gemrc"
 flerm_unlink "gvimrc"
+flerm_unlink "ignore"
 flerm_unlink "profile"
 flerm_unlink "vimrc"
 

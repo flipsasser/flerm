@@ -82,7 +82,7 @@ let g:ctrlp_prompt_mappings = {
     \ 'AcceptSelection("e")': ['<c-t>'],
     \ 'AcceptSelection("t")': ['<cr>', '<2-LeftMouse>'],
     \ } " Open in tabs
-set wildignore+=*/node_modules/*,*/tmp/*,*/build/*,*.so,*.swp,*.zip,*.pyc,*/dist/* " Ignore garbage
+set wildignore+=*/node_modules/*,*/*.xcodeproj/*,*/*.xcassets/*,*/tmp/*,*/build/*,*.so,*.swp,*.zip,*.pyc,*/dist/* " Ignore garbage
 
 " CMD+V - sigh. Someday.
 "map <Leader>v  <C-O>:set paste<CR><C-r>*<C-O>:set nopaste<CR>
