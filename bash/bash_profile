@@ -80,6 +80,7 @@ alias gap='git add -p'
 alias glod='git log --oneline --decorate'
 alias gst='git status'
 alias gd='git diff'
+alias gpu='git stash && git pull --rebase origin HEAD && git stash pop'
 
 # Editor aliases
 alias edit="vim"
