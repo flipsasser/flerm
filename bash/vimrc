@@ -34,7 +34,7 @@ autocmd BufWritePre * :TrailerTrim
 
 " Read specific files real smaht-like
 let g:jsx_ext_required = 0
-autocmd BufNewFile,BufRead *.json set ft=javascript
+"autocmd BufNewFile,BufRead *.json set ft=javascript
 autocmd BufNewFile,BufRead *.slim set ft=slim
 autocmd BufNewFile,BufRead *.inky set ft=slim
 
@@ -82,7 +82,7 @@ let g:ctrlp_prompt_mappings = {
     \ 'AcceptSelection("e")': ['<c-t>'],
     \ 'AcceptSelection("t")': ['<cr>', '<2-LeftMouse>'],
     \ } " Open in tabs
-set wildignore+=*/node_modules/*,*/*.xcodeproj/*,*/*.xcassets/*,*/tmp/*,*/build/*,*.so,*.swp,*.zip,*.pyc,*/dist/* " Ignore garbage
+set wildignore+=*/node_modules/*,*/*.xcodeproj/*,*/*.xcassets/*,*/tmp/*,*/build/*,*.so,*.swp,*.zip,*.pyc,*/dist/*,*/docs/* " Ignore garbage
 
 " CMD+V - sigh. Someday.
 "map <Leader>v  <C-O>:set paste<CR><C-r>*<C-O>:set nopaste<CR>
@@ -106,3 +106,8 @@ let g:airline#extensions#ale#enabled = 1
 
 " Airline configuration
 set laststatus=2 " Show all the time
+
+" Prettier configuration
+let g:prettier#quickfix_enabled = 0
+let g:prettier#autoformat = 0
+autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue PrettierAsync

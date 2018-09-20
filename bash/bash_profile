@@ -96,6 +96,7 @@ alias ls="ls -la"
 alias be="bundle exec"
 
 # Bash autocompletion (including git)
+[ -f /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion
 source ~/.flerm/bash/git-completion.bash
 
 # Ack, Ag, and replacements
@@ -106,7 +107,7 @@ gsub() {
     return
   fi
 
-  ack -l "$1" $3 | xargs perl -pi -E "s/$1/$2/g"
+  ag -l "$1" $3 | xargs perl -pi -E "s/$1/$2/g"
 }
 
 alias ag='ag --path-to-ignore ~/.ignore'
@@ -122,3 +123,9 @@ export PATH="$HOME/.yarn/bin:$PATH"
 
 # Ruby development
 eval "$(rbenv init -)"
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/flip/bin/google-cloud-sdk/path.bash.inc' ]; then source '/Users/flip/bin/google-cloud-sdk/path.bash.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/flip/bin/google-cloud-sdk/completion.bash.inc' ]; then source '/Users/flip/bin/google-cloud-sdk/completion.bash.inc'; fi
