@@ -14,6 +14,7 @@
 --ignore-directory=is:build
 --ignore-directory=is:coverage
 --ignore-directory=is:build
+--ignore-directory=is:docs
 --ignore-directory=is:log
 --ignore-directory=is:node_modules
 --ignore-directory=is:tags
