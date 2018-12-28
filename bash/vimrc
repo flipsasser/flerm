@@ -2,12 +2,13 @@ set nocompatible               " be iMproved
 filetype off                   " required!
 
 " Import bundles using vundle
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 so ~/.vim/plugins.vim
+call vundle#end()
 
-syntax on
 filetype plugin indent on
+syntax on
 
 " GUI configuration
 let &t_Co=256
@@ -112,8 +113,7 @@ let g:prettier#quickfix_enabled = 0
 let g:prettier#autoformat = 0
 autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue PrettierAsync
 
-" YouCompleteMe configuration
-if !exists("g:ycm_semantic_triggers")
-  let g:ycm_semantic_triggers = {}
-endif
-let g:ycm_semantic_triggers['typescript'] = ['.']
+" Ale configuration
+let g:ale_linters = {'ruby': ['standardrb']}
+let g:ale_fixers = {'ruby': ['standardrb']}
+let g:ale_fix_on_save = 1
