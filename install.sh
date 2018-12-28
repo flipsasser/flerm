@@ -1,13 +1,6 @@
 #!/usr/bin/env bash
 echo "Installing flerm..."
 
-# Rename old .flim installations to .flerm
-if [ -d ~/.flim ]
-then
-  echo "  moving .flim to .flerm"
-  mv ~/.flim ~/.flerm
-fi
-
 # Update or clone flerm
 if [ -d ~/.flerm ]
 then
