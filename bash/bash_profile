@@ -56,7 +56,13 @@ export HISTCONTROL=erasedups
 # Append to history file
 shopt -s histappend
 
-VISUAL=nvim
+if ! [ -x "$(command -v code)" ]; then
+  VISUAL=code
+elif ! [ -x "$(command -v nvim)" ]; then
+  VISUAL=vim
+else
+  VISUAL=nvim
+fi
 EDITOR="$VISUAL"
 LESS="FRX"
 RI="--format ansi -T"
