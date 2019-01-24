@@ -12,3 +12,5 @@
 	rebase = true
 [init]
 	templatedir = ~/.git_template
+[pull]
+	rebase = true

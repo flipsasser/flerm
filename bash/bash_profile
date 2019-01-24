@@ -1,3 +1,5 @@
+[[ $- == *i* ]] || return
+
 # git_prompt_info accepts 0 or 1 arguments (i.e., format string)
 # returns text to add to bash PS1 prompt (includes branch name)
 git_prompt_info () {
@@ -54,11 +56,11 @@ export HISTCONTROL=erasedups
 # Append to history file
 shopt -s histappend
 
-VISUAL=vim
+VISUAL=nvim
 EDITOR="$VISUAL"
 LESS="FRX"
 RI="--format ansi -T"
-PSQL_EDITOR='vim -c"setf sql"'
+PSQL_EDITOR='nvim -c"setf sql"'
 CLICOLOR=1
 LSCOLORS=gxgxcxdxbxegedabagacad
 
@@ -83,8 +85,8 @@ alias gd='git diff'
 alias gpu='git stash && git pull --rebase origin HEAD && git stash pop'
 
 # Editor aliases
-alias edit="vim"
-alias vi="vim"
+alias edit="nvim"
+alias vi="nvim"
 
 # Kill and status aliases
 alias die="killall -HUP -9"
@@ -96,7 +98,7 @@ alias ls="ls -la"
 alias be="bundle exec"
 
 # Bash autocompletion (including git)
-[ -f /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion
+if [ -f '/usr/local/etc/bash_completion.d' ]; then source /usr/local/etc/bash_completion.d; fi
 source ~/.flerm/bash/git-completion.bash
 
 # Ack, Ag, and replacements
@@ -111,6 +113,17 @@ gsub() {
 }
 
 alias ag='ag --path-to-ignore ~/.ignore'
+
+# Tmux helper
+tm() {
+  if [ $# -lt 1 ]
+  then
+    echo "Usage: tm PROJECT"
+    return
+  fi
+
+  tmux -CC attach -t "$1" || tmux -CC new -s $1
+}
 
 # Android development
 export ANDROID_HOME=$HOME/Library/Android/sdk
@@ -129,3 +142,9 @@ if [ -f '/Users/flip/bin/google-cloud-sdk/path.bash.inc' ]; then source '/Users/
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/flip/bin/google-cloud-sdk/completion.bash.inc' ]; then source '/Users/flip/bin/google-cloud-sdk/completion.bash.inc'; fi
+
+# Add local bin path if it exists
+if [ -d ~/.bin ]; then export PATH="~/.bin/:$PATH"; fi
+
+# VSCode, if'n it exists
+if [ -d '/Applications/Visual Studio Code.app/Contents/Resources/app/bin' ]; then export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"; fi
