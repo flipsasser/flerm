@@ -56,12 +56,13 @@ export HISTCONTROL=erasedups
 # Append to history file
 shopt -s histappend
 
-if ! [ -x "$(command -v code)" ]; then
+if [ -x "$(command -v code)" ]; then
   VISUAL=code
-elif ! [ -x "$(command -v nvim)" ]; then
-  VISUAL=vim
-else
+  alias co="code"
+elif [ -x "$(command -v nvim)" ]; then
   VISUAL=nvim
+else
+  VISUAL=vim
 fi
 EDITOR="$VISUAL"
 LESS="FRX"
@@ -138,7 +139,7 @@ export PATH=$PATH:$ANDROID_HOME/platform-tools
 export ANDROID_EMULATOR_USE_SYSTEM_LIBS=1
 
 # JS development
-export PATH="$HOME/.yarn/bin:$PATH"
+if [ -d ~/.yarn/bin ]; then export PATH="~/.yarn/bin/:$PATH"; fi
 
 # Ruby development
 eval "$(rbenv init -)"
