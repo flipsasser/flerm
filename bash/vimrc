@@ -18,7 +18,7 @@ set guifont=Monaco:h14
 set visualbell
 set splitright
 set splitbelow
-set mouse=a
+"set mouse=a
 
 set guioptions-=T guioptions-=e guioptions-=L guioptions-=r
 set shell=bash
