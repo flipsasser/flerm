@@ -147,12 +147,6 @@ then
 	eval "$(rbenv init -)"
 fi
 
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/flip/bin/google-cloud-sdk/path.bash.inc' ]; then source '/Users/flip/bin/google-cloud-sdk/path.bash.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/Users/flip/bin/google-cloud-sdk/completion.bash.inc' ]; then source '/Users/flip/bin/google-cloud-sdk/completion.bash.inc'; fi
-
 # Add local bin path if it exists
 if [ -d ~/.bin ]; then export PATH="~/.bin/:$PATH"; fi
 
