@@ -106,7 +106,10 @@ alias is="ps ax -o pid,comm |grep "
 alias wat="lsof |grep "
 
 # Bash overrides
+alias yarn="yarn --silent"
 alias ls="ls -la"
+
+# Helpful aliases
 alias be="bundle exec"
 
 # Bash autocompletion (including git)
