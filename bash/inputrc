@@ -1,0 +1,15 @@
+$include /etc/inputrc
+
+# Case-insensitive tab completion
+set completion-ignore-case on
+
+# Reverse search
+"\er": reverse-i-search
+
+# Ctrl-Delete: delete next word
+"\e[3;5~": kill-word
+
+# Ctrl-Backspace
+"\C-H": backward-kill-word
+
+

@@ -51,6 +51,7 @@ flerm_link "gitconfig"
 flerm_link "gitignore"
 flerm_link "git_template"
 flerm_link "ignore"
+flerm_link "inputrc"
 flerm_link "vimrc"
 
 # Update vim bundles
