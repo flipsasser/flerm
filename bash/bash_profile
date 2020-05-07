@@ -59,14 +59,17 @@ export HISTCONTROL=erasedups
 shopt -s histappend
 
 if [ -x "$(command -v code)" ]; then
-  VISUAL=code
   alias co="code"
-elif [ -x "$(command -v nvim)" ]; then
+fi
+
+if [ -x "$(command -v nvim)" ]; then
+  EDITOR=nvim
   VISUAL=nvim
 else
+  EDITOR=vim
   VISUAL=vim
 fi
-EDITOR="vim"
+
 LESS="FRX"
 RI="--format ansi -T"
 PSQL_EDITOR='nvim -c"setf sql"'
