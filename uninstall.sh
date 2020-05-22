@@ -24,9 +24,14 @@ flerm_unlink() {
 }
 
 flerm_unlink "ackrc"
+flerm_unlink "bash_profile"
 flerm_unlink "gemrc"
+flerm_unlink "gitconfig"
+flerm_unlink "gitignore"
+flerm_unlink "git_template"
+flerm_unlink "hushlogin"
 flerm_unlink "ignore"
-flerm_unlink "profile"
+flerm_unlink "inputrc"
 flerm_unlink "vimrc"
 
 rm -rf ~/.flerm
