@@ -10,7 +10,7 @@ then
   git submodule update --init
 else
   echo "  cloning flerm"
-  git clone git://github.com/flipsasser/flerm.git ~/.flerm
+  git clone git@github.com:flipsasser/flerm.git ~/.flerm
   cd ~/.flerm
   git submodule update --init
 fi
