@@ -113,6 +113,11 @@ alias be="bundle exec"
 if [ -f '/usr/local/etc/bash_completion.d' ]; then source /usr/local/etc/bash_completion.d; fi
 source ~/.flerm/bash/git-completion.bash
 
+# Client folder navigation
+cdc() {
+  cd ~/Clients/$1
+}
+
 # Ack, Ag, and replacements
 gsub() {
   if [ $# -lt 2 ]
@@ -145,6 +150,9 @@ export ANDROID_EMULATOR_USE_SYSTEM_LIBS=1
 
 # JS development
 if [ -d ~/.yarn/bin ]; then export PATH="~/.yarn/bin/:$PATH"; fi
+export NVM_DIR="$HOME/.nvm"
+[ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
+[ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 
 # Ruby development
 if [ -d ~/.rbenv/bin ]; then export PATH="$HOME/.rbenv/bin:$PATH"; fi
@@ -158,8 +166,4 @@ if [ -d ~/.bin ]; then export PATH="~/.bin/:$PATH"; fi
 
 # VSCode, if'n it exists
 if [ -d '/Applications/Visual Studio Code.app/Contents/Resources/app/bin' ]; then export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"; fi
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 

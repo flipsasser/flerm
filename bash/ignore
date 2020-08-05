@@ -1,12 +1,13 @@
+*.min.js
 build/
 coverage/
+dist/
 generated/
-ios/build
 ios/.+/project.pbxproj
+ios/build
 log/
 node_modules/
+package-lock.json
 tags/
 tmp/
-*.min.js
-package-lock.json
 yarn.lock
