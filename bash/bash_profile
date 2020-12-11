@@ -58,28 +58,25 @@ export HISTCONTROL=erasedups
 # Append to history file
 shopt -s histappend
 
-if [ -x "$(command -v code)" ]; then
-  alias co="code"
-fi
-
-EDITOR=vim
-VISUAL=vim
-LESS="FRX"
-RI="--format ansi -T"
-PSQL_EDITOR='nvim -c"setf sql"'
-CLICOLOR=1
-LSCOLORS=gxgxcxdxbxegedabagacad
-
-export VISUAL EDITOR LESS RI PSQL_EDITOR CLICOLOR LSCOLORS
+# Set up editors
+export EDITOR=vim
+export VISUAL=vim
+export LESS="FRX"
+export RI="--format ansi -T"
+export PSQL_EDITOR='nvim -c"setf sql"'
+export CLICOLOR=1
+export LSCOLORS=gxgxcxdxbxegedabagacad
 
 # Prevent bash deprecation warnings from Apple switching to zsh because GPLv3 is fucking impossible for them to imagine, heaven forfend
 export BASH_SILENCE_DEPRECATION_WARNING=1
 
+# Set up keyboard navigation
 bind 'set bind-tty-special-chars off'
 bind '"\ep": history-search-backward'
 bind '"\en": history-search-forward'
 bind '"\C-w": backward-kill-word'
 
+# I don't know, some history stuff
 export HISTIGNORE="%*"
 bind '"\C-q": "%-\n"'
 
@@ -169,3 +166,9 @@ if [ -d ~/.cargo ]; then
   export PATH="$HOME/.cargo/bin:$PATH"
   source $HOME/.cargo/env
 fi
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/flip/Downloads/google-cloud-sdk/path.bash.inc' ]; then . '/Users/flip/Downloads/google-cloud-sdk/path.bash.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/flip/Downloads/google-cloud-sdk/completion.bash.inc' ]; then . '/Users/flip/Downloads/google-cloud-sdk/completion.bash.inc'; fi
