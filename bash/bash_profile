@@ -159,9 +159,6 @@ if [ $(command -v rbenv) ]; then
   eval "$(rbenv init -)"
 fi
 
-# Use Brave for Ruby integration tests
-export WD_CHROME_PATH="/Applications/Brave\ Browser.app/Contents/MacOS/Brave\ Browser"
-
 # Add local bin path if it exists
 if [ -d ~/.bin ]; then export PATH="~/.bin/:$PATH"; fi
 
