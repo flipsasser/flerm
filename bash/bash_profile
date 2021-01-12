@@ -152,12 +152,14 @@ export NVM_DIR="$HOME/.nvm"
 # Ruby development
 if [ -d ~/.rbenv/bin ]; then
   export PATH="$HOME/.rbenv/bin:$PATH"
-  export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
 fi
 
 if [ $(command -v rbenv) ]; then
   eval "$(rbenv init -)"
 fi
+
+export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
+export WD_CHROME_VERSION="88.0.4324.27"
 
 # Add local bin path if it exists
 if [ -d ~/.bin ]; then export PATH="~/.bin/:$PATH"; fi
