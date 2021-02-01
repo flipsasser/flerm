@@ -101,7 +101,7 @@ alias wat="lsof |grep "
 
 # Bash overrides
 alias yarn="yarn --silent"
-alias ls="ls -la"
+alias ls="ls -lah"
 
 # Helpful aliases
 alias be="bundle exec"
