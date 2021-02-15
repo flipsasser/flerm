@@ -1,8 +1,13 @@
-# FLERM: Flip's Terminal (previously "flim" or "flip's vim")
+# Flerm
 
-This is how I like my terminal set up. Strongly recommend you keep moving, cause I don't know what the hell I'm doin.
+Like Flubber, only good.
 
-## Installation
+Jk this is my terminal setup. I strongly recommend you keep moving, cause I don't know what the hell I'm doin.
 
-1. Do this: `curl -L https://raw.github.com/flipsasser/flerm/master/install.sh | bash -s stable`
-2. Profit
+<div style="text-align: center">
+
+```
+  curl -L https://raw.github.com/flipsasser/flerm/master/install.sh | bash -s stable
+```
+
+</div>
