@@ -1,14 +1,16 @@
 #!/usr/bin/env bash
-echo "Installing flerm..."
+echo "Installing Flerm..."
 
-# Update or clone flerm
+# Update or clone Flerm
 if [ -d ~/.flerm ]; then
-  echo "  updating flerm"
+  echo "  already installed; updating"
   cd ~/.flerm
+  git stash
   git pull --rebase origin master
   git submodule update --init
+  git stash pop
 else
-  echo "  cloning flerm"
+  echo "  cloning Flerm"
   git clone git@github.com:flipsasser/flerm.git ~/.flerm || git clone https://github.com/flipsasser/flerm.git ~/.flerm
   cd ~/.flerm
   git submodule update --init
@@ -59,6 +61,6 @@ source ~/.bash_profile
 
 echo "
 
-FLERM is all set up. Lucky you!
+Flerm is all set up. Lucky you!
 
 "
