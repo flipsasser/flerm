@@ -1,5 +1,6 @@
 [[ $- == *i* ]] || return
 
+## BASH PROMPT
 # git_prompt_info accepts 0 or 1 arguments (i.e., format string)
 # returns text to add to bash PS1 prompt (includes branch name)
 git_prompt_info() {
@@ -49,40 +50,41 @@ git_prompt_info() {
   fi
 }
 
-# Store 10,000 history entries
-export HISTSIZE=10000
+[ -z "$PS1" ] || stty -ixon
+[ -z "$PS1" ] || export PS1="\[\033[01;32m\]\h\[\033[00m\]:\[\033[01;36m\]\W\[\033[00m\]\$(git_prompt_info '(%s)')\[\e[34m\]→\[\e[m\] "
 
-# Don't store duplicates
-export HISTCONTROL=erasedups
+## SHELL CONFIGURATION
+# Bash history
+export HISTCONTROL=erasedups # Don't store duplicates
+export HISTIGNORE="%*"
+export HISTSIZE=10000 # Store 10,000 history entries
+shopt -s histappend # Append to history file
 
-# Append to history file
-shopt -s histappend
+# Prevent bash deprecation warnings from Apple switching to zsh because GPLv3
+# is fucking impossible for them to imagine, heaven forfend
+export BASH_SILENCE_DEPRECATION_WARNING=1
 
 # Set up editors
-export EDITOR=vim
-export VISUAL=vim
-export LESS="FRX"
-export RI="--format ansi -T"
-export PSQL_EDITOR='nvim -c"setf sql"'
 export CLICOLOR=1
+export EDITOR=vim
+export LESS="FRX"
 export LSCOLORS=gxgxcxdxbxegedabagacad
-
-# Prevent bash deprecation warnings from Apple switching to zsh because GPLv3 is fucking impossible for them to imagine, heaven forfend
-export BASH_SILENCE_DEPRECATION_WARNING=1
+export PSQL_EDITOR='vim -c"setf sql"'
+export RI="--format ansi -T"
+export VISUAL=vim
 
 # Set up keyboard navigation
 bind 'set bind-tty-special-chars off'
 bind '"\ep": history-search-backward'
 bind '"\en": history-search-forward'
 bind '"\C-w": backward-kill-word'
-
-# I don't know, some history stuff
-export HISTIGNORE="%*"
 bind '"\C-q": "%-\n"'
 
-[ -z "$PS1" ] || stty -ixon
-[ -z "$PS1" ] || export PS1="\[\033[01;32m\]\h\[\033[00m\]:\[\033[01;36m\]\W\[\033[00m\]\$(git_prompt_info '(%s)')\[\e[34m\]→\[\e[m\] "
+# Bash autocompletion (including git)
+if [ -f '/usr/local/etc/bash_completion.d' ]; then source /usr/local/etc/bash_completion.d; fi
+source ~/.flerm/bash/git-completion.bash
 
+## SHORTCUTS
 # Git aliases
 alias gap='git add -p'
 alias glod='git log --oneline --decorate'
@@ -91,8 +93,8 @@ alias gd='git diff'
 alias gpu='git stash && git pull --rebase origin HEAD && git stash pop'
 
 # Editor aliases
-alias edit="nvim"
-alias vi="nvim"
+alias edit="vim"
+alias vi="vim"
 
 # Kill and status aliases
 alias die="killall -HUP -9"
@@ -106,10 +108,7 @@ alias ls="ls -lah"
 # Helpful aliases
 alias be="bundle exec"
 
-# Bash autocompletion (including git)
-if [ -f '/usr/local/etc/bash_completion.d' ]; then source /usr/local/etc/bash_completion.d; fi
-source ~/.flerm/bash/git-completion.bash
-
+## HELPER FUNCTIONS
 # Client folder navigation
 cdc() {
   cd ~/Clients/$1
@@ -137,6 +136,13 @@ tm() {
   tmux -CC attach -t "$1" || tmux -CC new -s $1
 }
 
+## DEV ENVIRONMENT
+# Local bin path
+if [ -d ~/.bin ]; then export PATH="~/.bin/:$PATH"; fi
+
+# VSCode editor
+if [ -d '/Applications/Visual Studio Code.app/Contents/Resources/app/bin' ]; then export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"; fi
+
 # Android development
 export ANDROID_HOME=$HOME/Library/Android/sdk
 export PATH=$PATH:$ANDROID_HOME/tools
@@ -150,31 +156,12 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm" # This loads nvm bash_completion
 
 # Ruby development
-if [ -d ~/.rbenv/bin ]; then
-  export PATH="$HOME/.rbenv/bin:$PATH"
-fi
-
-if [ $(command -v rbenv) ]; then
-  eval "$(rbenv init -)"
-fi
-
-export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
 export WD_CHROME_VERSION="88.0.4324.27"
+if [ -d ~/.rbenv/bin ]; then export PATH="$HOME/.rbenv/bin:$PATH"; fi
+if [ $(command -v rbenv) ]; then eval "$(rbenv init -)"; fi
+if [ $(command -v bre) ]; then export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"; fi
 
-# Add local bin path if it exists
-if [ -d ~/.bin ]; then export PATH="~/.bin/:$PATH"; fi
+# Rust development
+if [ -d ~/.cargo/bin ]; then export PATH="$HOME/.cargo/bin:$PATH"; fi
+if [ -f ~/.cargo/env ]; then source $HOME/.cargo/env; fi
 
-# VSCode, if'n it exists
-if [ -d '/Applications/Visual Studio Code.app/Contents/Resources/app/bin' ]; then export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"; fi
-
-# Set up Rust, if need be
-if [ -d ~/.cargo ]; then
-  export PATH="$HOME/.cargo/bin:$PATH"
-  source $HOME/.cargo/env
-fi
-
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/flip/Downloads/google-cloud-sdk/path.bash.inc' ]; then . '/Users/flip/Downloads/google-cloud-sdk/path.bash.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/Users/flip/Downloads/google-cloud-sdk/completion.bash.inc' ]; then . '/Users/flip/Downloads/google-cloud-sdk/completion.bash.inc'; fi
