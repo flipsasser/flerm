@@ -58,7 +58,7 @@ git_prompt_info() {
 export HISTCONTROL=erasedups # Don't store duplicates
 export HISTIGNORE="%*"
 export HISTSIZE=10000 # Store 10,000 history entries
-shopt -s histappend # Append to history file
+shopt -s histappend   # Append to history file
 
 # Prevent bash deprecation warnings from Apple switching to zsh because GPLv3
 # is fucking impossible for them to imagine, heaven forfend
@@ -164,4 +164,3 @@ if [ $(command -v bre) ]; then export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(
 # Rust development
 if [ -d ~/.cargo/bin ]; then export PATH="$HOME/.cargo/bin:$PATH"; fi
 if [ -f ~/.cargo/env ]; then source $HOME/.cargo/env; fi
-

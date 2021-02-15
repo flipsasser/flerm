@@ -11,5 +11,3 @@ set completion-ignore-case on
 
 # Ctrl-Backspace
 "\C-H": backward-kill-word
-
-
