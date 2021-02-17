@@ -11,7 +11,7 @@ if [ -d ~/.flerm ]; then
   git stash pop
 else
   echo "  cloning Flerm"
-  git clone git@github.com:flipsasser/flerm.git ~/.flerm || git clone https://github.com/flipsasser/flerm.git ~/.flerm
+  [ -f ~/.ssh/id_rsa.pub ] && git clone git@github.com:flipsasser/flerm.git ~/.flerm || git clone https://github.com/flipsasser/flerm.git ~/.flerm
   cd ~/.flerm
   git submodule update --init
 fi
