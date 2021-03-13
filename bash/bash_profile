@@ -138,7 +138,8 @@ tm() {
 if [ -d ~/.bin ]; then export PATH="~/.bin/:$PATH"; fi
 
 # VSCode editor
-if [ -d '/Applications/Visual Studio Code.app/Contents/Resources/app/bin' ]; then export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"; fi
+vsc="/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
+if [ -d "$vsc" ]; then export PATH="$PATH:$vsc"; fi
 
 # Android development
 if [ -d ~/Library/Android/sdk ]; then
@@ -157,7 +158,7 @@ if [ -d ~/.nvm ]; then
 fi
 
 # Ruby development
-export WD_CHROME_VERSION="88.0.4324.27"
+export WD_CHROME_VERSION="90.0.4425"
 if [ -d ~/.rbenv/bin ]; then export PATH="$HOME/.rbenv/bin:$PATH"; fi
 if [ $(command -v rbenv) ]; then eval "$(rbenv init -)"; fi
 if [ $(command -v brew) ]; then export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"; fi
@@ -165,3 +166,9 @@ if [ $(command -v brew) ]; then export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$
 # Rust development
 if [ -d ~/.cargo/bin ]; then export PATH="$HOME/.cargo/bin:$PATH"; fi
 if [ -f ~/.cargo/env ]; then source $HOME/.cargo/env; fi
+
+# GCP
+gcp_path="/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.bash.inc"
+if [ -f $gcp_path ]; then source $gcp_path; fi
+gcp_completions="/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.bash.inc"
+if [ -f $gcp_completions ]; then source $gcp_completions; fi
