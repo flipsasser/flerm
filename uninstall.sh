@@ -29,6 +29,7 @@ flerm_unlink "git_template"
 flerm_unlink "hushlogin"
 flerm_unlink "ignore"
 flerm_unlink "inputrc"
+flerm_unlink "psqlrc"
 flerm_unlink "vimrc"
 
 rm -rf ~/.flerm

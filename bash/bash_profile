@@ -81,7 +81,7 @@ bind '"\C-w": backward-kill-word'
 bind '"\C-q": "%-\n"'
 
 # Bash autocompletion (including git)
-if [ -f '/usr/local/etc/bash_completion.d' ]; then source /usr/local/etc/bash_completion.d; fi
+[ -f /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion
 source ~/.flerm/bash/git-completion.bash
 
 ## SHORTCUTS
