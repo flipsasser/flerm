@@ -97,8 +97,19 @@ alias edit="vim"
 alias vi="vim"
 
 # Kill and status aliases
-alias die="killall -HUP -9"
-alias is="ps ax -o pid,comm |grep "
+die() {
+  if [ $# -lt 1 ]; then
+    echo "Usage: die PATTERN"
+    return
+  fi
+
+  is $@ | cut -d' ' -f1 |xargs kill -9
+}
+
+is() {
+  ps ax -o pid,comm |grep $@
+}
+
 alias wat="lsof |grep "
 
 # Helpful aliases
