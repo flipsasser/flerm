@@ -103,11 +103,11 @@ die() {
     return
   fi
 
-  is $@ | cut -d' ' -f1 |xargs kill -9
+  is $@ | sed -e 's/^[[:space:]]*//' | cut -d' ' -f1 | xargs kill -9
 }
 
 is() {
-  ps ax -o pid,comm |grep $@
+  ps ax -o pid,comm | grep $@
 }
 
 alias wat="lsof |grep "
