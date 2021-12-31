@@ -103,7 +103,9 @@ die() {
     return
   fi
 
-  is $@ | sed -e 's/^[[:space:]]*//' | cut -d' ' -f1 | xargs kill -9
+  # is $@ | sed -e 's/^[[:space:]]*//' | cut -d' ' -f1 | xargs kill -9
+  is $@ | cut -d' ' -f1 | xargs kill -9
+  is $@
 }
 
 is() {
@@ -149,6 +151,10 @@ tm() {
 vsc="/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
 if [ -d "$vsc" ]; then export PATH="$PATH:$vsc"; fi
 
+# Snowflake client
+ssq="/Applications/SnowSQL.app/Contents/MacOS/"
+if [ -d "$ssq" ]; then export PATH="$PATH:$ssq"; fi
+
 # Android development
 if [ -d ~/Library/Android/sdk ]; then
   export ANDROID_HOME=$HOME/Library/Android/sdk
@@ -170,7 +176,6 @@ anaconda="/usr/local/anaconda3/bin"
 if [ -d "$anaconda" ]; then export PATH="$PATH:$anaconda"; fi
 
 # Ruby development
-export WD_CHROME_VERSION="90.0.4430.24"
 if [ -d ~/.rbenv/bin ]; then export PATH="$HOME/.rbenv/bin:$PATH"; fi
 if [ $(command -v rbenv) ]; then eval "$(rbenv init -)"; fi
 #if [ $(command -v brew) ]; then export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"; fi
@@ -188,3 +193,8 @@ if [ -f $gcp_completions ]; then source $gcp_completions; fi
 # Local bin path
 if [ -d ~/.flerm/bin ]; then export PATH="~/.flerm/bin/:$PATH"; fi
 if [ -d ~/.bin ]; then export PATH="~/.bin/:$PATH"; fi
+export PKG_CONFIG_PATH=/usr/local/opt/openssl/lib/pkgconfig
+
+. /usr/local/opt/asdf/libexec/asdf.sh
+
+. /usr/local/opt/asdf/etc/bash_completion.d/asdf.bash
