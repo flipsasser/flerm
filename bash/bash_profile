@@ -103,13 +103,20 @@ die() {
     return
   fi
 
-  # is $@ | sed -e 's/^[[:space:]]*//' | cut -d' ' -f1 | xargs kill -9
-  is $@ | cut -d' ' -f1 | xargs kill -9
+  is $@ | cut -d' ' -f1 | xargs kill -HUP
   is $@
 }
 
 is() {
   ps ax -o pid,comm | grep $@
+}
+
+# As I am cursed to live with Rails and its random hangups, I am cursed to use
+# this
+stahp() {
+  die ruby
+  killall ruby
+  overmind kill
 }
 
 alias wat="lsof |grep "
@@ -120,11 +127,6 @@ alias ls="ls -lah"
 alias yarn="yarn --silent"
 
 ## HELPER FUNCTIONS
-# Client folder navigation
-cdc() {
-  cd ~/Clients/$1
-}
-
 # Ack, Ag, and replacements
 alias ag='ag --path-to-ignore ~/.ignore'
 gsub() {
@@ -147,6 +149,9 @@ tm() {
 }
 
 ## DEV ENVIRONMENT
+# ASDF for version picking
+if [ -f /usr/local/opt/asdf/libexec/asdf.sh ]; then . /usr/local/opt/asdf/libexec/asdf.sh; fi
+
 # VSCode editor
 vsc="/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
 if [ -d "$vsc" ]; then export PATH="$PATH:$vsc"; fi
@@ -163,26 +168,16 @@ if [ -d ~/Library/Android/sdk ]; then
   export ANDROID_EMULATOR_USE_SYSTEM_LIBS=1
 fi
 
-# JS development
-if [ -d ~/.yarn/bin ]; then export PATH="~/.yarn/bin/:$PATH"; fi
-if [ -d ~/.nvm ]; then
-  export NVM_DIR="$HOME/.nvm"                                                                               # This is self-explanatory; IDK what it's used for but there you have it
-  [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"                                       # This loads nvm
-  [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm" # This loads nvm bash_completion
-fi
+# Crystal development
+export PKG_CONFIG_PATH=/usr/local/opt/openssl@1.1/lib/pkgconfig
 
-# Python development
-anaconda="/usr/local/anaconda3/bin"
-if [ -d "$anaconda" ]; then export PATH="$PATH:$anaconda"; fi
-
-# Ruby development
-if [ -d ~/.rbenv/bin ]; then export PATH="$HOME/.rbenv/bin:$PATH"; fi
-if [ $(command -v rbenv) ]; then eval "$(rbenv init -)"; fi
-#if [ $(command -v brew) ]; then export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"; fi
-
-# Rust development
-if [ -d ~/.cargo/bin ]; then export PATH="$HOME/.cargo/bin:$PATH"; fi
-if [ -f ~/.cargo/env ]; then source $HOME/.cargo/env; fi
+# Go development
+export GOPATH=$(go env GOPATH)
+export GOROOT=$(go env GOROOT)
+export GOBIN=$(go env GOBIN)
+export PATH=$PATH:$GOPATH/bin
+export PATH=$PATH:$GOROOT/bin
+export PATH=$PATH:$GOBIN
 
 # Google Cloud SDK
 gcp_path="/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.bash.inc"
@@ -190,11 +185,17 @@ if [ -f $gcp_path ]; then source $gcp_path; fi
 gcp_completions="/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.bash.inc"
 if [ -f $gcp_completions ]; then source $gcp_completions; fi
 
+# JS development
+if [ -d ~/.yarn/bin ]; then export PATH="~/.yarn/bin/:$PATH"; fi
+
+# Python development
+anaconda="/usr/local/anaconda3/bin"
+if [ -d "$anaconda" ]; then export PATH="$PATH:$anaconda"; fi
+
+# Rust development
+if [ -d ~/.cargo/bin ]; then export PATH="$HOME/.cargo/bin:$PATH"; fi
+if [ -f ~/.cargo/env ]; then source $HOME/.cargo/env; fi
+
 # Local bin path
 if [ -d ~/.flerm/bin ]; then export PATH="~/.flerm/bin/:$PATH"; fi
 if [ -d ~/.bin ]; then export PATH="~/.bin/:$PATH"; fi
-export PKG_CONFIG_PATH=/usr/local/opt/openssl/lib/pkgconfig
-
-. /usr/local/opt/asdf/libexec/asdf.sh
-
-. /usr/local/opt/asdf/etc/bash_completion.d/asdf.bash
