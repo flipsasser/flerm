@@ -26,8 +26,8 @@ fi
 ln -s ~/.flerm/vim/ ~/.vim
 
 flerm_link() {
-  source_file=~/.flerm/bash/$1
-  user_file=~/.$1
+  source_file=~/.flerm/$1
+  user_file=~/$2
   if [ -h $user_file -o $user_file ]; then
     echo "  re-linking $user_file"
     rm -rf $user_file
@@ -42,18 +42,22 @@ flerm_link() {
 }
 
 # Link various bash files
-flerm_link "ackrc"
-flerm_link "asdfrc"
-flerm_link "bash_profile"
-flerm_link "gemrc"
-flerm_link "gitconfig"
-flerm_link "gitignore"
-flerm_link "git_template"
-flerm_link "hushlogin"
-flerm_link "ignore"
-flerm_link "inputrc"
-flerm_link "psqlrc"
-flerm_link "vimrc"
+flerm_link "bash/ackrc" ".ackrc"
+flerm_link "base/asdfrc" ".asdfrc"
+flerm_link "bash/bash_profile" ".bash_profile"
+flerm_link "bash/gemrc" ".gemrc"
+flerm_link "bash/gitconfig" ".gitconfig"
+flerm_link "bash/gitignore" ".gitignore"
+flerm_link "bash/git_template" ".git_template"
+flerm_link "bash/hushlogin" ".hushlogin"
+flerm_link "bash/ignore" ".ignore"
+flerm_link "bash/inputrc" ".inputrc"
+flerm_link "bash/psqlrc" ".psqlrc"
+flerm_link "bash/vimrc" ".vimrc"
+
+# Install the .bin directory
+mkdir -p ~/.bin
+flerm_link "bin/rubocop" ".bin/rubocop"
 
 # Update vim bundles
 vim +BundleInstall +qall
