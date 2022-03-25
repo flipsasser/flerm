@@ -172,12 +172,14 @@ fi
 export PKG_CONFIG_PATH=/usr/local/opt/openssl@1.1/lib/pkgconfig
 
 # Go development
-export GOPATH=$(go env GOPATH)
-export GOROOT=$(go env GOROOT)
-export GOBIN=$(go env GOBIN)
-export PATH=$PATH:$GOPATH/bin
-export PATH=$PATH:$GOROOT/bin
-export PATH=$PATH:$GOBIN
+if [ $(type -P "$cmd") ]; then
+  export GOPATH=$(go env GOPATH)
+  export GOROOT=$(go env GOROOT)
+  export GOBIN=$(go env GOBIN)
+  export PATH=$PATH:$GOPATH/bin
+  export PATH=$PATH:$GOROOT/bin
+  export PATH=$PATH:$GOBIN
+fi
 
 # Google Cloud SDK
 gcp_path="/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.bash.inc"
