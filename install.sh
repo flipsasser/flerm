@@ -43,7 +43,7 @@ flerm_link() {
 
 # Link various bash files
 flerm_link "bash/ackrc" ".ackrc"
-flerm_link "base/asdfrc" ".asdfrc"
+flerm_link "bash/asdfrc" ".asdfrc"
 flerm_link "bash/bash_profile" ".bash_profile"
 flerm_link "bash/gemrc" ".gemrc"
 flerm_link "bash/gitconfig" ".gitconfig"
