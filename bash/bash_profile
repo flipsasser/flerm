@@ -150,7 +150,10 @@ tm() {
 
 ## DEV ENVIRONMENT
 # ASDF for version picking
-if [ -f /usr/local/opt/asdf/libexec/asdf.sh ]; then . /usr/local/opt/asdf/libexec/asdf.sh; fi
+if [ -f $HOME/.asdf/asdf.sh ]; then
+  . $HOME/.asdf/asdf.sh
+  . $HOME/.asdf/completions/asdf.bash
+fi
 
 # VSCode editor
 vsc="/Applications/Visual Studio Code.app/Contents/Resources/app/bin"

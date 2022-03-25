@@ -62,6 +62,12 @@ flerm_link "bin/rubocop" ".bin/rubocop"
 # Update vim bundles
 vim +BundleInstall +qall
 
+# Install asdf (if it's not installed)
+if [ ! -d ~/.asdf ]; then
+  echo "  installing ASDF into ~/.asdf"
+  git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.9.0
+fi
+
 # Source the new environment
 source ~/.bash_profile
 
