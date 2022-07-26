@@ -111,12 +111,12 @@ is() {
   ps ax -o pid,comm | grep $@
 }
 
-# As I am cursed to live with Rails and its random hangups, I am cursed to use
-# this
+# As I am cursed to live with Rails and its random hangups, I am cursed to use this
 stahp() {
   die ruby
   killall ruby
   overmind kill
+  caddy stop
 }
 
 alias wat="lsof |grep "
@@ -172,7 +172,16 @@ if [ -d ~/Library/Android/sdk ]; then
 fi
 
 # Crystal development
-export PKG_CONFIG_PATH=/usr/local/opt/openssl@1.1/lib/pkgconfig
+export LDFLAGS="-L/usr/local/opt/openssl@3/lib"
+export CPPFLAGS="-I/usr/local/opt/openssl@3/include"
+
+export PKG_CONFIG_PATH="/usr/local/opt/openssl@1.1/lib/pkgconfig"
+export PATH="/usr/local/opt/llvm@11/bin:$PATH"
+export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/local/opt/openssl1.1/lib/pkgconfig
+export PATH="/usr/local/opt/llvm/bin:$PATH"
+
+# export PKG_CONFIG_PATH="/usr/local/opt/openssl@3/lib/pkgconfig"
+# export PATH="/usr/local/opt/openssl@3/bin:$PATH"
 
 # Go development
 if [ $(type -P "$cmd") ]; then
