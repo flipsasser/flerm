@@ -80,10 +80,6 @@ bind '"\en": history-search-forward'
 bind '"\C-w": backward-kill-word'
 bind '"\C-q": "%-\n"'
 
-# Bash autocompletion (including git)
-[ -f /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion
-source ~/.flerm/bash/git-completion.bash
-
 ## SHORTCUTS
 # Git aliases
 alias gap='git add -p'
@@ -149,19 +145,27 @@ tm() {
 }
 
 ## DEV ENVIRONMENT
+# Local bin path
+if [ -d ~/.flerm/bin ]; then export PATH="~/.flerm/bin/:$PATH"; fi
+if [ -d ~/.bin ]; then export PATH="~/.bin/:$PATH"; fi
+
+# Homebrew
+eval $(/opt/homebrew/bin/brew shellenv)
+
 # ASDF for version picking
+if [ -f $HOMEBREW_PREFIX/opt/asdf/libexec/asdf.sh ]; then
+  . $HOMEBREW_PREFIX/opt/asdf/libexec/asdf.sh
+fi
+
 if [ -f $HOME/.asdf/asdf.sh ]; then
   . $HOME/.asdf/asdf.sh
   . $HOME/.asdf/completions/asdf.bash
 fi
 
-# VSCode editor
-vsc="/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
-if [ -d "$vsc" ]; then export PATH="$PATH:$vsc"; fi
-
-# Snowflake client
-ssq="/Applications/SnowSQL.app/Contents/MacOS/"
-if [ -d "$ssq" ]; then export PATH="$PATH:$ssq"; fi
+# Bash autocompletion (including git)
+[ -f $HOMEBREW_PREFIX/etc/bash_completion ] && . $HOMEBREW_PREFIX/etc/bash_completion
+[ -d $HOMEBREW_PREFIX/etc/bash_completion.d ] && . $HOMEBREW_PREFIX/etc/bash_completion.d/*
+source ~/.flerm/bash/git-completion.bash
 
 # Android development
 if [ -d ~/Library/Android/sdk ]; then
@@ -172,16 +176,13 @@ if [ -d ~/Library/Android/sdk ]; then
 fi
 
 # Crystal development
-export LDFLAGS="-L/usr/local/opt/openssl@3/lib"
-export CPPFLAGS="-I/usr/local/opt/openssl@3/include"
+export LDFLAGS="-L$HOMEBREW_PREFIX/opt/openssl@3/lib"
+export CPPFLAGS="-I$HOMEBREW_PREFIX/opt/openssl@3/include"
 
-export PKG_CONFIG_PATH="/usr/local/opt/openssl@1.1/lib/pkgconfig"
-export PATH="/usr/local/opt/llvm@11/bin:$PATH"
-export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/local/opt/openssl1.1/lib/pkgconfig
-export PATH="/usr/local/opt/llvm/bin:$PATH"
-
-# export PKG_CONFIG_PATH="/usr/local/opt/openssl@3/lib/pkgconfig"
-# export PATH="/usr/local/opt/openssl@3/bin:$PATH"
+export PKG_CONFIG_PATH="$HOMEBREW_PREFIX/opt/openssl@1.1/lib/pkgconfig"
+export PATH="$HOMEBREW_PREFIX/opt/llvm@11/bin:$PATH"
+export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:$HOMEBREW_PREFIX/opt/openssl1.1/lib/pkgconfig
+export PATH="$HOMEBREW_PREFIX/opt/llvm/bin:$PATH"
 
 # Go development
 if [ $(type -P "$cmd") ]; then
@@ -192,12 +193,6 @@ if [ $(type -P "$cmd") ]; then
   export PATH=$PATH:$GOROOT/bin
   export PATH=$PATH:$GOBIN
 fi
-
-# Google Cloud SDK
-gcp_path="/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.bash.inc"
-if [ -f $gcp_path ]; then source $gcp_path; fi
-gcp_completions="/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.bash.inc"
-if [ -f $gcp_completions ]; then source $gcp_completions; fi
 
 # JS development
 if [ -d ~/.yarn/bin ]; then export PATH="~/.yarn/bin/:$PATH"; fi
@@ -210,6 +205,10 @@ if [ -d "$anaconda" ]; then export PATH="$PATH:$anaconda"; fi
 if [ -d ~/.cargo/bin ]; then export PATH="$HOME/.cargo/bin:$PATH"; fi
 if [ -f ~/.cargo/env ]; then source $HOME/.cargo/env; fi
 
-# Local bin path
-if [ -d ~/.flerm/bin ]; then export PATH="~/.flerm/bin/:$PATH"; fi
-if [ -d ~/.bin ]; then export PATH="~/.bin/:$PATH"; fi
+# Snowflake client
+ssq="/Applications/SnowSQL.app/Contents/MacOS/"
+if [ -d "$ssq" ]; then export PATH="$PATH:$ssq"; fi
+
+# VSCode editor
+vsc="/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
+if [ -d "$vsc" ]; then export PATH="$PATH:$vsc"; fi
