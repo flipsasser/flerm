@@ -52,6 +52,7 @@ flerm_link "bash/git_template" ".git_template"
 flerm_link "bash/hushlogin" ".hushlogin"
 flerm_link "bash/ignore" ".ignore"
 flerm_link "bash/inputrc" ".inputrc"
+flerm_link "bash/irbrc" ".irbrc"
 flerm_link "bash/psqlrc" ".psqlrc"
 flerm_link "bash/vimrc" ".vimrc"
 

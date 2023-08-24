@@ -21,6 +21,7 @@ flerm_unlink() {
 }
 
 flerm_unlink "ackrc"
+flerm_unlink "asdfrc"
 flerm_unlink "bash_profile"
 flerm_unlink "gemrc"
 flerm_unlink "gitconfig"
@@ -29,6 +30,7 @@ flerm_unlink "git_template"
 flerm_unlink "hushlogin"
 flerm_unlink "ignore"
 flerm_unlink "inputrc"
+flerm_unlink "irbrc"
 flerm_unlink "psqlrc"
 flerm_unlink "vimrc"
 

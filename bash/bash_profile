@@ -109,6 +109,10 @@ is() {
 
 # As I am cursed to live with Rails and its random hangups, I am cursed to use this
 stahp() {
+  die crystal
+  die gulp
+  die lucky
+  die node
   die ruby
   killall ruby
   overmind kill
@@ -170,8 +174,9 @@ source ~/.flerm/bash/git-completion.bash
 # Android development
 if [ -d ~/Library/Android/sdk ]; then
   export ANDROID_HOME=$HOME/Library/Android/sdk
-  export PATH=$PATH:$ANDROID_HOME/tools
+  export PATH=$PATH:$ANDROID_HOME/emulator
   export PATH=$PATH:$ANDROID_HOME/platform-tools
+  export PATH=$PATH:$ANDROID_HOME/tools
   export ANDROID_EMULATOR_USE_SYSTEM_LIBS=1
 fi
 
@@ -212,3 +217,8 @@ if [ -d "$ssq" ]; then export PATH="$PATH:$ssq"; fi
 # VSCode editor
 vsc="/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
 if [ -d "$vsc" ]; then export PATH="$PATH:$vsc"; fi
+
+# FZF
+#[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+#source ~/.flerm/bash/fzf-bash-completion
+#bind -x '"\t": fzf_bash_completion'
