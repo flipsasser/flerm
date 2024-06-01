@@ -183,6 +183,7 @@ fi
 # Crystal development
 export LDFLAGS="-L$HOMEBREW_PREFIX/opt/openssl@3/lib"
 export CPPFLAGS="-I$HOMEBREW_PREFIX/opt/openssl@3/include"
+export CRYSTAL_OPTS="--link-flags=-Wl,-ld_classic"
 
 export PKG_CONFIG_PATH="$HOMEBREW_PREFIX/opt/openssl@1.1/lib/pkgconfig"
 export PATH="$HOMEBREW_PREFIX/opt/llvm@11/bin:$PATH"
