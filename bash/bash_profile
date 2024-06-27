@@ -156,20 +156,8 @@ if [ -d ~/.bin ]; then export PATH="~/.bin/:$PATH"; fi
 # Homebrew
 eval $(/opt/homebrew/bin/brew shellenv)
 
-# ASDF for version picking
-if [ -f $HOMEBREW_PREFIX/opt/asdf/libexec/asdf.sh ]; then
-  . $HOMEBREW_PREFIX/opt/asdf/libexec/asdf.sh
-fi
-
-if [ -f $HOME/.asdf/asdf.sh ]; then
-  . $HOME/.asdf/asdf.sh
-  . $HOME/.asdf/completions/asdf.bash
-fi
-
 # Bash autocompletion (including git)
-[ -f $HOMEBREW_PREFIX/etc/bash_completion ] && . $HOMEBREW_PREFIX/etc/bash_completion
-[ -d $HOMEBREW_PREFIX/etc/bash_completion.d ] && . $HOMEBREW_PREFIX/etc/bash_completion.d/*
-source ~/.flerm/bash/git-completion.bash
+[[ -r "$HOMEBREW_PREFIX/etc/profile.d/bash_completion.sh" ]] && . "$HOMEBREW_PREFIX/etc/profile.d/bash_completion.sh"
 
 # Android development
 if [ -d ~/Library/Android/sdk ]; then
@@ -223,3 +211,7 @@ if [ -d "$vsc" ]; then export PATH="$PATH:$vsc"; fi
 #[ -f ~/.fzf.bash ] && source ~/.fzf.bash
 #source ~/.flerm/bash/fzf-bash-completion
 #bind -x '"\t": fzf_bash_completion'
+
+# Nextmv CLI modifications
+[ -d ~/.nextmv ] && export PATH=~/.nextmv:$PATH
+export NEXTMV_TOKEN=$(type nextmv &>/dev/null && sh -c "tok=\$(nextmv token 2>/dev/null); if [ \$? -eq 0 ]; then echo \$tok; fi")
