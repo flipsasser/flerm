@@ -156,6 +156,11 @@ if [ -d ~/.bin ]; then export PATH="~/.bin/:$PATH"; fi
 # Homebrew
 eval $(/opt/homebrew/bin/brew shellenv)
 
+# ASDF for version picking
+if [ -f $HOMEBREW_PREFIX/opt/asdf/libexec/asdf.sh ]; then
+  . $HOMEBREW_PREFIX/opt/asdf/libexec/asdf.sh
+fi
+
 # Bash autocompletion (including git)
 [[ -r "$HOMEBREW_PREFIX/etc/profile.d/bash_completion.sh" ]] && . "$HOMEBREW_PREFIX/etc/profile.d/bash_completion.sh"
 
