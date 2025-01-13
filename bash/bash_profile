@@ -83,9 +83,12 @@ bind '"\C-q": "%-\n"'
 ## SHORTCUTS
 # Git aliases
 alias gap='git add -p'
+alias gco='git checkout'
 alias gd='git diff'
 alias glod='git log --oneline --decorate'
-alias gpu='git stash && git pull --rebase origin HEAD && git stash pop'
+#alias gpl='git stash && git pull --rebase origin HEAD && git stash pop'
+alias gpl='git pull --rebase origin HEAD'
+alias gps='git push origin HEAD'
 alias gst='git status'
 
 # Editor aliases
@@ -200,6 +203,9 @@ if [ -d ~/.yarn/bin ]; then export PATH="~/.yarn/bin/:$PATH"; fi
 anaconda="/usr/local/anaconda3/bin"
 if [ -d "$anaconda" ]; then export PATH="$PATH:$anaconda"; fi
 
+# Ruby development
+export RUBY_CONFIGURE_OPTS=--enable-yjit
+
 # Rust development
 if [ -d ~/.cargo/bin ]; then export PATH="$HOME/.cargo/bin:$PATH"; fi
 if [ -f ~/.cargo/env ]; then source $HOME/.cargo/env; fi
@@ -220,3 +226,7 @@ if [ -d "$vsc" ]; then export PATH="$PATH:$vsc"; fi
 # Nextmv CLI modifications
 [ -d ~/.nextmv ] && export PATH=~/.nextmv:$PATH
 export NEXTMV_TOKEN=$(type nextmv &>/dev/null && sh -c "tok=\$(nextmv token 2>/dev/null); if [ \$? -eq 0 ]; then echo \$tok; fi")
+
+
+# Gcloud shit
+if [ -d $HOMEBREW_PREFIX/share/google-cloud-sdk/bin ]; then export PATH="$HOMEBREW_PREFIX/share/google-cloud-sdk/bin:$PATH"; fi
