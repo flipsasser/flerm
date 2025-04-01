@@ -89,7 +89,12 @@ alias glod='git log --oneline --decorate'
 #alias gpl='git stash && git pull --rebase origin HEAD && git stash pop'
 alias gpl='git pull --rebase origin HEAD'
 alias gps='git push origin HEAD'
+alias gpr='git pull --rebase origin $(br)'
 alias gst='git status'
+br() {
+  branch=`git symbolic-ref HEAD`
+  echo ${branch#"refs/heads/"}
+}
 
 # Editor aliases
 alias edit="vim"
@@ -153,6 +158,7 @@ tm() {
 
 ## DEV ENVIRONMENT
 # Local bin path
+if [ -d ~/.asdf/bin ]; then export PATH="~/.asdf/bin/:$PATH"; fi
 if [ -d ~/.flerm/bin ]; then export PATH="~/.flerm/bin/:$PATH"; fi
 if [ -d ~/.bin ]; then export PATH="~/.bin/:$PATH"; fi
 
@@ -160,6 +166,7 @@ if [ -d ~/.bin ]; then export PATH="~/.bin/:$PATH"; fi
 eval $(/opt/homebrew/bin/brew shellenv)
 
 # ASDF for version picking
+export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
 if [ -f $HOMEBREW_PREFIX/opt/asdf/libexec/asdf.sh ]; then
   . $HOMEBREW_PREFIX/opt/asdf/libexec/asdf.sh
 fi
