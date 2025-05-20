@@ -92,7 +92,7 @@ alias gps='git push origin HEAD'
 alias gpr='git pull --rebase origin $(br)'
 alias gst='git status'
 br() {
-  branch=`git symbolic-ref HEAD`
+  branch=$(git symbolic-ref HEAD)
   echo ${branch#"refs/heads/"}
 }
 
@@ -158,17 +158,23 @@ tm() {
 
 ## DEV ENVIRONMENT
 # Local bin path
-if [ -d ~/.asdf/bin ]; then export PATH="~/.asdf/bin/:$PATH"; fi
 if [ -d ~/.flerm/bin ]; then export PATH="~/.flerm/bin/:$PATH"; fi
 if [ -d ~/.bin ]; then export PATH="~/.bin/:$PATH"; fi
 
 # Homebrew
 eval $(/opt/homebrew/bin/brew shellenv)
 
-# ASDF for version picking
-export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
-if [ -f $HOMEBREW_PREFIX/opt/asdf/libexec/asdf.sh ]; then
-  . $HOMEBREW_PREFIX/opt/asdf/libexec/asdf.sh
+# Version managers. Prefer mise; fall back to asdf
+if type "mise" >/dev/null; then
+  # Prefer mise
+  eval "$(mise activate bash)"
+elif [ -d ~/.asdf/bin ]; then
+  # But asdf is great, too
+  export PATH="~/.asdf/bin/:$PATH"
+  export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
+  if [ -f $HOMEBREW_PREFIX/opt/asdf/libexec/asdf.sh ]; then
+    . $HOMEBREW_PREFIX/opt/asdf/libexec/asdf.sh
+  fi
 fi
 
 # Bash autocompletion (including git)
@@ -233,7 +239,6 @@ if [ -d "$vsc" ]; then export PATH="$PATH:$vsc"; fi
 # Nextmv CLI modifications
 [ -d ~/.nextmv ] && export PATH=~/.nextmv:$PATH
 export NEXTMV_TOKEN=$(type nextmv &>/dev/null && sh -c "tok=\$(nextmv token 2>/dev/null); if [ \$? -eq 0 ]; then echo \$tok; fi")
-
 
 # Gcloud shit
 if [ -d $HOMEBREW_PREFIX/share/google-cloud-sdk/bin ]; then export PATH="$HOMEBREW_PREFIX/share/google-cloud-sdk/bin:$PATH"; fi
